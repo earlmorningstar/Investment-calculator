@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function UserInput() {
-  const [initInvt, setInitInvt] = useState('');
-  const [annlInvt, setAnnlInvt] = useState('');
-  const [expdrtn, setExptRtn] = useState('');
-  const [duration, setDuration] = useState('');
+export default function UserInput({initial, annual, expexted, timeDuration}) {
+  const [initInvt, setInitInvt] = useState(initial);
+  const [annlInvt, setAnnlInvt] = useState(annual);
+  const [expdrtn, setExptRtn] = useState(expexted);
+  const [duration, setDuration] = useState(timeDuration);
 
 
   function handleInitialInvestment(evt){
