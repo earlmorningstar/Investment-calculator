@@ -2,77 +2,74 @@ import { useState } from "react";
 import { calculateInvestmentResults } from "../util/investment.js";
 
 
-// export default function UserInput({initial, annual, expexted, timeDuration}) {
-//     const [initInvt, setInitInvt] = useState(initial);
-//     const [annlInvt, setAnnlInvt] = useState(annual);
-//     const [expdrtn, setExptRtn] = useState(expexted);
-//     const [duration, setDuration] = useState(timeDuration);
+
 
 export default function UserInput() {
-  const [initInvt, setInitInvt] = useState('');
-  const [annlInvt, setAnnlInvt] = useState('');
-  const [expdrtn, setExptRtn] = useState('');
-  const [duration, setDuration] = useState('');
-  const [investmentResult, setInvestmentResult] = useState(null);
 
+  const [userInput,  setUserInput] = useState({
+    initialInvestment: 0,
+    annualInvestment: 0,
+    expectedReturn: 0,
+    duration: 0,
+  });
 
-  function handleInitialInvestment(evt){
-    setInitInvt(evt.target.value);
+  function handleChange(inputIdentifier, newValue){
+    setUserInput(prevUserInput => {
+        return {
+            ...prevUserInput,
+        [inputIdentifier]: newValue
+        }
+    })
   }
 
-  function handleAnnualInvestment(evt) {
-    setAnnlInvt(evt.target.value);
-  }
+// const [initInvt, setInitInvt] = useState('');
+// const [annlInvt, setAnnlInvt] = useState('');
+// const [expdrtn, setExptRtn] = useState('');
+// const [duration, setDuration] = useState('');
+// const [investmentResult, setInvestmentResult] = useState(null);
 
-  function handleExpectedReturn(evt){
-    setExptRtn(evt.target.value);
-  }
+//   function handleInitialInvestment(evt){
+//     setInitInvt(evt.target.value);
+//   }
 
-  function handleDuration(evt){
-    setDuration(evt.target.value);
-  }
+//   function handleAnnualInvestment(evt) {
+//     setAnnlInvt(evt.target.value);
+//   }
 
+//   function handleExpectedReturn(evt){
+//     setExptRtn(evt.target.value);
+//   }
 
-  const handleCalculation = () => {
-    const initial = parseFloat(initInvt);
-    const annual = parseFloat(annlInvt);
-    const expected = parseFloat(expdrtn);
-    const timeDuration = parseFloat(duration);
-
-    const result = calculateInvestmentResults(initial, annual, expected, timeDuration);
-
-    setInvestmentResult(result);
-
-  }
-
-
-
+//   function handleDuration(evt){
+//     setDuration(evt.target.value);
+//   }
 
   return (
     <>
-      <form onChange={handleCalculation} className="input-group" id="user-input">
+      <form id="user-input">
 
-        <div>
-          <span >
+        <div className="input-group">
+          <span>
             <label htmlFor="">Initial Investment</label>
-            <input className="input-bottom" type="number" required value={initInvt} onChange={handleInitialInvestment}/>
+            <input className="input-bottom" type="number" required value={userInput.initialInvestment} onChange={(evt)=> handleChange('initialInvestment', evt.target.value)} />
           </span>
 
           <span>
              <label htmlFor="">Expected Return</label>
-            <input type="number" required value={expdrtn} onChange={handleExpectedReturn}/>
+            <input type="number" required value={userInput.expectedReturn} onChange={(evt)=>handleChange('expectedReturn', evt.target.value)}/>
           </span>
+          
         </div>
 
-        <div>
+        <div className="input-group">
           <span>
           <label htmlFor="">Annual Investment</label>
-            <input className="input-bottom" type="number" required value={annlInvt} onChange={handleAnnualInvestment} />
+            <input className="input-bottom" type="number" required value={userInput.annualInvestment} onChange={(evt)=>handleChange('annualInvestment', evt.target.value)} />
           </span>
 
           <span>
             <label htmlFor="">Duration</label>
-            <input type="number" required value={duration} onChange={handleDuration} />
+            <input type="number" required value={userInput.duration} onChange={(evt)=>handleChange('duration', evt.target.value)}/>
           </span>
         </div>
       </form>

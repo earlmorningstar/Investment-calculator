@@ -10,6 +10,7 @@ function App() {
   <UserInput />
   <ResultTable />
 
+  {/* year={} investmentValue={} interestYear={} totalInterest={} investmentCapital={} */}
   </>
     
   )

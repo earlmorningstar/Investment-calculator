@@ -1,4 +1,4 @@
-export default function ResultTable() {
+export default function ResultTable({year, investmentValue, interestYear, totalInterest, investmentCapital}) {
   return (
     <>
       <table id="result" className="center">
@@ -14,14 +14,14 @@ export default function ResultTable() {
 
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{year}</td>
+            <td>{investmentValue}</td>
+            <td>{interestYear}</td>
+            <td>{totalInterest}</td>
+            <td>{investmentCapital}</td>
           </tr>
         </tbody>
-      </table>
+      </table> 
     </>
   );
 }
