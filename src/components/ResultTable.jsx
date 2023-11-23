@@ -1,6 +1,8 @@
 import { calculateInvestmentResults, formatter } from "../util/investment";
 
+
 export default function ResultTable({ input }) {
+  // const results = [];
   const resultData = calculateInvestmentResults(input);
   const initialInvestment =
     resultData[0].valueEndOfYear -
